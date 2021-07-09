@@ -16,9 +16,14 @@ class CreateStudentDbsTable extends Migration
         Schema::create('student_dbs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('std_id');
-            $table->string('c_id');
+            $table->string('c_id')->nullable();
             $table->string('name');
-            $table->unsignedInteger('teacher')
+            $table->unsignedInteger('teacher_advice');
+            $table->foreign('teacher_advice')->references('id')->on('teacher_dbs');
+            $table->unsignedInteger('classroom');
+            $table->foreign('classroom')->references('id')->on('classroom_dbs');
+            $table->enum('delete', ['true','false'])->default('true');
+            $table->enum('status',['enable','disable'])->default('enable');
             $table->timestamps();
         });
     }

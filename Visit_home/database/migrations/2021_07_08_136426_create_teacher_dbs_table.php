@@ -18,8 +18,11 @@ class CreateTeacherDbsTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->enum('sex',['male','female']);
-            $table->enum('level',['ครูอัตราจ้าง','ครูพี่เลี้ยง','ครูผู้ช่วย','ครู','ครูชำนาญการ','ครูชำนาญการพิเศษ','ครูเชี่ยวชาญ'])->default('ครู');
+            $table->enum('level',['ครูอัตราจ้าง','ครูพี่เลี้ยง','ครูผู้ช่วย','ครู','ครูชำนาญการ','ครูชำนาญการพิเศษ','ครูเชี่ยวชาญ','ผู้อำนวยการ'])->default('ครู');
             $table->string('tel');
+            $table->unsignedInteger('classroom');
+            $table->foreign('classroom')->references('id')->on('classroom_dbs');
+            $table->enum('status',['enable','disable'])->default('enable');
             $table->timestamps();
         });
     }

@@ -17,8 +17,8 @@ class CreateClassroomDbsTable extends Migration
             $table->increments('id');
             $table->string('class_name');
             $table->enum('c_level',['อนุบาล','ประถมศึกษาตอนต้น','ประถมศึกษาตอนปลาย','มัธยมศึกษาตอนต้น']);
-            $table->unsignedInteger('teacher_advice');
-            $table->foreign('teacher_advice')->references('id')->on('teacher_dbs');
+            $table->enum('status',['enable','disable'])->default('enable');
+
             $table->timestamps();
         });
     }
