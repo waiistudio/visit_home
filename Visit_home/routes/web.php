@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassroomDbController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentDbController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -27,5 +26,9 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 //Visit Page
 Route::name('visit_data.')->group(function(){
-    Route::get('/class/{id}', [ClassroomDbController::class, 'index'])->name('class');
+    Route::get('/class/{id}', [StudentDbController::class, 'show'])->name('class');
 });
+
+// Route::name('add_data.')->group(function(){
+//     Route::get('')
+// });

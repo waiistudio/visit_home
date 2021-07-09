@@ -14,6 +14,6 @@ class teacher_db extends Model
 
     public function student_dbs()
     {
-        return $this->hasMany(student_db::class);
+        return $this->hasMany(student_db::class,'teacher_advice');
     }
 }

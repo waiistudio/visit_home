@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\classroom_db;
+use App\Models\teacher_db;
 use Illuminate\Http\Request;
 
 class ClassroomDbController extends Controller
@@ -51,9 +52,9 @@ class ClassroomDbController extends Controller
      * @param  \App\Models\classroom_db  $classroom_db
      * @return \Illuminate\Http\Response
      */
-    public function show(classroom_db $classroom_db)
+    public function show(Request $request)
     {
-        //
+        
     }
 
     /**

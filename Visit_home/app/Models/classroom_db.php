@@ -11,8 +11,8 @@ class classroom_db extends Model
     protected $table = 'classroom_dbs';
     protected $fillable = ['classname','c_level','status'];
 
-    public function teacher_dbs()
+    public function Teacher()
     {
-        return $this->hasMany(teacher_db::class);
+        return $this->hasMany(teacher_db::class, 'classroom');
     }
 }

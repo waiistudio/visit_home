@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\student_db;
+use App\Models\classroom_db;
 use Illuminate\Http\Request;
 
 class StudentDbController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +49,17 @@ class StudentDbController extends Controller
      * @param  \App\Models\student_db  $student_db
      * @return \Illuminate\Http\Response
      */
-    public function show(student_db $student_db)
+    public function show($id)
     {
-        //
+        $classroom = classroom_db::find($id);
+        // return $classroom->Teacher;
+        $student_data = student_db::where([
+            ['classroom', '=', $id],
+            ['delete','=','false'],
+            ['status','=','enable']
+        ])->get();
+
+        return view('visit.index', compact('student_data','classroom'));
     }
 
     /**
