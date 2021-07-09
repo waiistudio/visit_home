@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ClassroomDbController extends Controller
 {
+    public static function get()
+    {
+        return classroom_db::where([
+            ['status', '=', 'enable'],
+        ])->get();
+    }
+   
     /**
      * Display a listing of the resource.
      *

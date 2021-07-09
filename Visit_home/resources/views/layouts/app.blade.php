@@ -50,9 +50,9 @@
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                                </li> --}}
                             @endif
                         @else
                         <li class="nav-item dropdown">
@@ -79,15 +79,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    ออกจากระบบ
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                               @foreach (classroom_db::get() as $i)
+                               <a class="dropdown-item" href="{{ route('visit_data.class',$i->id) }}">
+                                    {{ $i->class_name }}
+                               </a>
+                               @endforeach
                             </div>
                         </li>
 
